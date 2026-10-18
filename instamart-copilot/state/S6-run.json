@@ -1,0 +1,52 @@
+{
+ "run_id": "S6-run",
+ "scenario_id": "S6",
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are a refund AGENT for Instamart support. Use the tools to look up the order, check the policy, calculate the refund and then issue it or escalate it. Finish with one line that starts with REFUND, ESCALATE, DENIED or NOT_FOUND followed by a colon."
+  },
+  {
+   "role": "user",
+   "content": "Refund for order ORD-999999 please."
+  },
+  {
+   "role": "assistant",
+   "content": null,
+   "tool_calls": [
+    {
+     "id": "call_1",
+     "name": "get_order",
+     "arguments": {
+      "order_id": "ORD-999999"
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_1",
+   "name": "get_order",
+   "content": "{\"error\": \"order not found\"}"
+  }
+ ],
+ "tokens_used": 76,
+ "step": 1,
+ "tools_executed": [
+  "get_order"
+ ],
+ "steps": [
+  {
+   "tool": "get_order",
+   "arguments": {
+    "order_id": "ORD-999999"
+   },
+   "observation": {
+    "error": "order not found"
+   }
+  }
+ ],
+ "llm_calls": 1,
+ "status": null,
+ "final_answer": null
+}
