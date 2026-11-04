@@ -1,0 +1,56 @@
+== Audit: shape, dtypes, missing (blank) counts ==
+
+[customers] shape=(1200, 5)
+  customer_id        dtype=str      blank=    0 (0.00%)
+  city               dtype=str      blank=    0 (0.00%)
+  signup_date        dtype=str      blank=    0 (0.00%)
+  age                dtype=str      blank=   61 (5.08%)
+  gender             dtype=str      blank=   30 (2.50%)
+
+[products] shape=(40, 4)
+  product_id         dtype=str      blank=    0 (0.00%)
+  product_name       dtype=str      blank=    0 (0.00%)
+  category           dtype=str      blank=    0 (0.00%)
+  price_inr          dtype=int64    blank=    0 (0.00%)
+
+[orders] shape=(13084, 9)
+  order_id           dtype=str      blank=    0 (0.00%)
+  customer_id        dtype=str      blank=    0 (0.00%)
+  product_id         dtype=str      blank=    0 (0.00%)
+  quantity           dtype=int64    blank=    0 (0.00%)
+  order_ts           dtype=str      blank=    0 (0.00%)
+  status             dtype=str      blank=    0 (0.00%)
+  discount_pct       dtype=int64    blank=    0 (0.00%)
+  order_amount       dtype=str      blank=    0 (0.00%)
+  delivery_minutes   dtype=str      blank= 2541 (19.42%)
+
+== Audit figures ==
+  raw orders rows: 13084
+  exact duplicate rows: 119
+  pending rows: 656
+  distinct order_id: 12309
+  non-numeric order_amount: 120
+  negative delivery_minutes: 106
+  blank delivery_minutes: 2541
+  blank age: 61
+  age outside 10-100: 6
+  distinct raw city spellings: 24
+  distinct non-blank raw gender spellings: 10
+  blank gender: 30
+
+== Customer cleaning log ==
+  city values changed: 476
+  gender values changed: 950
+  ages outside 10-100 set to missing: 6
+  missing ages before fill (blank + invalid): 67
+== Order cleaning log ==
+  raw rows: 13084
+  exact duplicates removed: 119
+  superseded (earlier pending) records removed: 656
+  unparseable amounts filled from catalogue price: 112
+  negative delivery_minutes set to missing: 105
+  completed delivery_minutes imputed with category median: 774
+cities: {'Pune': 227, 'Delhi': 210, 'Bengaluru': 197, 'Chennai': 191, 'Hyderabad': 191, 'Mumbai': 184}
+genders: {'female': 610, 'male': 560, 'unknown': 30} age range 18 60
+orders: 12309 {'completed': 11110, 'cancelled': 1199} completed sum 2998668.8
+wrote data/clean/*.csv and data/instamart.db

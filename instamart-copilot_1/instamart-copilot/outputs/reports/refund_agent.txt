@@ -1,0 +1,25 @@
+Scenario | status | refund_inr | expected | model calls | tokens
+S1 | REFUND | 128.25 | 128.25 | 5 | 1057
+S2 | REFUND | 135.00 | 135.00 | 5 | 1057
+S3 | ESCALATE | 1999.00 | 1999.00 | 5 | 1044
+S4 | DENIED | 0.00 | 0.00 | 4 | 733
+S5 | DENIED | 0.00 | 0.00 | 3 | 433
+S6 | NOT_FOUND | 0.00 | 0.00 | 2 | 136
+S7 | FALLBACK_MAX_ITERATIONS | 0.00 | 0.00 | 6 | 3192
+
+-- Demo: S1 with token_limit=200
+status=FALLBACK_TOKEN_LIMIT llm_calls=3 tokens=450 steps_completed=['get_order', 'search_policy']
+-- Demo: S1 with time_limit_seconds=0
+status=FALLBACK_TIMEOUT llm_calls=0 tokens=0
+-- Demo: S1 crash after the 2nd tool execution, then resume
+crash: simulated crash after tool #2 (search_policy)
+checkpoint tools executed so far: ['get_order', 'search_policy']
+tools executed across crash + resume: ['get_order', 'search_policy', 'calculate_refund', 'issue_refund']
+final status=REFUND refund=128.25 llm_calls=5 tokens=1057
+
+ledger lines:
+{"timestamp": "2026-11-04T07:08:07+00:00", "tool": "issue_refund", "order_id": "ORD-100048", "refund_inr": 128.25}
+{"timestamp": "2026-11-04T07:08:07+00:00", "tool": "issue_refund", "order_id": "ORD-100067", "refund_inr": 135.0}
+{"timestamp": "2026-11-04T07:08:07+00:00", "tool": "escalate_to_human", "order_id": "ORD-100145", "refund_inr": 1999.0}
+{"timestamp": "2026-11-04T07:08:07+00:00", "tool": "issue_refund", "order_id": "ORD-100048", "refund_inr": 128.25, "duplicate_suppressed": true}
+

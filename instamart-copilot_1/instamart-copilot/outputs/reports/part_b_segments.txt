@@ -1,0 +1,24 @@
+RFM customers: 1175
+recency median=19 min=0 max=180
+frequency mean=9.46 max=33
+monetary mean=2552.06 max=14766.55
+
+K | inertia | silhouette
+2 |   1820.8 | 0.465
+3 |   1268.2 | 0.445
+4 |    743.1 | 0.526
+5 |    617.4 | 0.480
+6 |    503.2 | 0.482
+7 |    408.5 | 0.416
+8 |    366.5 | 0.412
+
+Segment profile:
+            size  mean_recency  mean_frequency  mean_monetary          segment_name
+segment_id                                                                         
+0            436         28.86            3.77        1057.62   Occasional Shoppers
+1            138         24.12            6.77        7129.70  Premium Big Spenders
+2            419          8.77           19.40        3410.02        Loyal Regulars
+3            182        109.04            2.20         685.99     Dormant / At-Risk
+
+PCA explained_variance_ratio_: 0.634, 0.218, total 0.852
+wrote outputs/customer_segments.csv; premium segment id = 1

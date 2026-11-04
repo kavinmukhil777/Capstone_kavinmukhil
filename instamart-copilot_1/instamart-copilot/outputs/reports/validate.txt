@@ -1,0 +1,14 @@
+  ok  12,309 order rows
+  ok  one row per order_id
+  ok  11,110 completed
+  ok  1,199 cancelled
+  ok  no pending rows
+  ok  0 missing order_amount
+  ok  0 missing delivery (completed)
+  ok  1,199 missing delivery (cancelled)
+  ok  completed revenue 2,998,668.80
+  ok  six cities
+  ok  city counts
+  ok  genders 610/560/30
+  ok  0 missing ages, all 18..60
+ALL CHECKPOINTS PASSED

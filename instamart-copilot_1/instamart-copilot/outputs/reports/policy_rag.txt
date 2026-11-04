@@ -1,0 +1,18 @@
+== overlap 10 ==
+chunks=15 (size=40, overlap=10); per-file: {'delivery_policy.txt': 3, 'escalation_policy.txt': 3, 'payment_policy.txt': 3, 'privacy_policy.txt': 2, 'refund_policy.txt': 4}
+answerable: expected_doc in top-3 12/12; expected_fact in answer 12/12; unanswerable fallback 2/2
+
+retrieve('refund policy late delivery'):
+  refund_policy.txt score=0.272
+  refund_policy.txt score=0.251
+  refund_policy.txt score=0.245
+
+== overlap 0 ==
+chunks=13 (size=40, overlap=0); per-file: {'delivery_policy.txt': 3, 'escalation_policy.txt': 2, 'payment_policy.txt': 3, 'privacy_policy.txt': 2, 'refund_policy.txt': 3}
+answerable: expected_doc in top-3 12/12; expected_fact in answer 10/12; unanswerable fallback 2/2
+  FAIL: 'What delivery time makes a completed order eligible for a full refund?' -> doc_in_top3=True fact_in_answer=False
+        answer: receives a full refund of the order amount.
+  FAIL: 'How soon is money returned when a payment fails but is deducted?' -> doc_in_top3=True fact_in_answer=False
+        answer: If a payment fails but money is deducted, the amount is returned automatically
+ 
+1000 must be approved by a human support lead before money is returned.

@@ -1,0 +1,35 @@
+empty tickets=4; long tickets=4; long est_tokens=[734]
+redaction substitutions: {'EMAIL': 55, 'PHONE': 91, 'ORDER_ID': 132} total 278
+PII patterns left after redaction: 0
+zero-shot prompt tokens: 38  few-shot prompt tokens: 129
+transient errors recovered (zero-shot): 19
+
+[zero-shot] status counts: {'classified_json': 135, 'classified_keyword': 12, 'flagged_invalid_output': 9, 'skipped_empty': 4, 'flagged_long': 4}
+[zero-shot] classified=147 accuracy=85.7% (126/147) total_tokens=10336 tokens/classified=70.31
+zero-shot confusion table (rows=true, cols=predicted):
+category       billing  delivery  fraud  technical
+true_category                                     
+billing             38         0      0          0
+delivery             0        36      0          0
+fraud               11         0     23          0
+technical           10         0      0         29
+transient errors recovered (few-shot): 19
+
+[few-shot] status counts: {'classified_json': 135, 'classified_keyword': 12, 'flagged_invalid_output': 9, 'skipped_empty': 4, 'flagged_long': 4}
+[few-shot] classified=147 accuracy=100.0% (147/147) total_tokens=24532 tokens/classified=166.88
+retry waits: n=38 min=0.0455 max=0.0568 retry numbers=[0]
+
+Budget demo TOKEN_BUDGET=6000: tokens used=6036, budget_exhausted tickets=65; status counts {'classified_json': 79, 'budget_exhausted': 65, 'classified_keyword': 7, 'flagged_invalid_output': 5, 'skipped_empty': 4, 'flagged_long': 4}
+
+Final triage_results.csv rows=164 tokens=24532
+route counts: {'support_queue': 102, 'security_team': 34, 'human_review': 17, 'premium_desk': 11}
+priority counts: {'NORMAL': 119, 'HIGH': 45}
+route x status:
+route                   human_review  premium_desk  security_team  support_queue
+status                                                                          
+classified_json                    0            10             31             94
+classified_keyword                 0             1              3              8
+flagged_invalid_output             9             0              0              0
+flagged_long                       4             0              0              0
+skipped_empty                      4             0              0              0
+retry log lines written: 68 -> outputs/retry_log.txt

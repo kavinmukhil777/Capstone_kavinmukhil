@@ -1,0 +1,45 @@
+Q1 customers: 30
+Q2 rows: 30 sum: 2998668.8
+   largest cell: {'city': 'Bengaluru', 'category': 'Electronics', 'revenue': 233909.45}
+Q3 products: 11
+Q4 customers without completed order: 25
+Q5 customers: 550 average: 2552.06
+Q6 top per city:
+     city customer_id  total_spend
+Bengaluru       C0082     12856.20
+  Chennai       C0930     10151.40
+    Delhi       C0291     13742.60
+Hyderabad       C0743     12730.05
+   Mumbai       C0693     14766.55
+     Pune       C0426     10377.10
+   rows where RANK != ROW_NUMBER: 8
+Q7 daily rows: 183 last cumulative: 2998668.8
+
+pivot_table grand total: 2998668.8 == SQL total: 2998668.8 match: True
+category       Dairy  Electronics    Grocery  Personal Care     Snacks         All
+city                                                                              
+Bengaluru   87075.05    233909.45  110915.65       20193.85   71549.40   523643.40
+Chennai     78301.80    195508.80   93817.45       27675.40   68325.70   463629.15
+Delhi      117271.70    158549.10  112658.05       23471.50   90879.45   502829.80
+Hyderabad   83731.00    228913.10  109475.40       24800.05   81670.35   528589.90
+Mumbai      75209.85    214738.40   78970.15       38018.00   72122.10   479058.50
+Pune        90349.55    187629.25  108456.60       34275.15   80207.50   500918.05
+All        531938.95   1219248.10  614293.30      168433.95  464754.50  2998668.80
+
+Per-city sum/mean/count:
+               total    mean     n
+city                              
+Bengaluru  523643.40  276.47  1894
+Chennai    463629.15  272.72  1700
+Delhi      502829.80  243.62  2064
+Hyderabad  528589.90  284.95  1855
+Mumbai     479058.50  297.00  1613
+Pune       500918.05  252.48  1984
+
+order_amount: mean=269.91 median=135.00 skew=4.61 Q1=64.80 Q3=297.00 IQR=232.20 lower fence=-283.50 upper fence=645.30 below=0 above=897
+                  order_amount  discount_pct  quantity  delivery_minutes
+order_amount             1.000        -0.095     0.087            -0.003
+discount_pct            -0.095         1.000    -0.000            -0.010
+quantity                 0.087        -0.000     1.000            -0.013
+delivery_minutes        -0.003        -0.010    -0.013             1.000
+largest |corr| pair: ('order_amount', 'discount_pct') -0.0951
